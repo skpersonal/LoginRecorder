@@ -1,0 +1,6 @@
+name: LoginRecorder
+version: ${project.version}
+main: com.github.skpersonal.loginrecorder.LoginRecorder
+authors: [shukichi0278]
+description: Record the date and time you joined in.
+website: https://github.com/skpersonal/LoginRecorder
