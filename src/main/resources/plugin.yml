@@ -4,3 +4,12 @@ main: com.github.skpersonal.loginrecorder.LoginRecorder
 authors: [shukichi0278]
 description: Record the date and time you joined in.
 website: https://github.com/skpersonal/LoginRecorder
+permissions:
+  loginrecorder.admin:
+    description: Admin's perm
+    default: op
+commands:
+  checkentry:
+    description: Check Record Entry
+    usage: /checkentry
+    permission: loginrecorder.admin
