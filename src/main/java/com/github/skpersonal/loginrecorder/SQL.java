@@ -5,7 +5,7 @@ import org.bukkit.Bukkit;
 import java.sql.*;
 
 public class SQL {
-    //CREATE TABLE list(name,uuid,date);
+    //CREATE TABLE list(name,uuid,date,ip);
     private Connection connection;
     private Statement statement;
     private boolean isConnected = false;
@@ -14,7 +14,7 @@ public class SQL {
     private SQL() {
     }
 
-    static SQL getInstance() {
+    public static SQL getInstance() {
         return sql;
     }
 
@@ -31,7 +31,7 @@ public class SQL {
         }
     }
 
-    synchronized void sendCommand(String sql) {
+    public synchronized void sendCommand(String sql) {
         try {
             statement.executeUpdate(sql);
         } catch (SQLException e) {
@@ -39,7 +39,7 @@ public class SQL {
         }
     }
 
-    synchronized ResultSet sendCommandFeedback(String sql) {
+    public synchronized ResultSet sendCommandFeedback(String sql) {
         ResultSet result = null;
         try {
             result = statement.executeQuery(sql);
@@ -49,7 +49,7 @@ public class SQL {
         return result;
     }
 
-    boolean isConnected() {
+    public boolean isConnected() {
         return isConnected;
     }
 

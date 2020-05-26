@@ -43,9 +43,9 @@ public class Listeners implements Listener {
                 } else {
                     e.setJoinMessage(ChatColor.YELLOW + player.getName() + " joined the game\nLast entry is '" + date + "'");
                 }
-                sql.sendCommand("UPDATE list SET name='" + player.getName() + "',date='" + time + "' WHERE uuid='" + player.getUniqueId().toString() + "';");
+                sql.sendCommand("UPDATE list SET name='" + player.getName() + "',date='" + time + "',ip='" + player.getAddress().getAddress().getHostAddress() + "' WHERE uuid='" + player.getUniqueId().toString() + "';");
             } else {
-                sql.sendCommand("INSERT INTO list VALUES('" + player.getName() + "','" + player.getUniqueId().toString() + "','" + time + "');");
+                sql.sendCommand("INSERT INTO list VALUES('" + player.getName() + "','" + player.getUniqueId().toString() + "','" + time + "','" + player.getAddress().getAddress().getHostAddress() + "');");
             }
         } catch (SQLException ex) {
             ex.printStackTrace();

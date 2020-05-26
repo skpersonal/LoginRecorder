@@ -1,8 +1,11 @@
 package com.github.skpersonal.loginrecorder;
 
+import com.github.skpersonal.loginrecorder.tabcomplete.CheckEntryTabComplete;
 import org.bukkit.Bukkit;
+import org.bukkit.command.PluginCommand;
 import org.bukkit.plugin.java.JavaPlugin;
 
+import java.io.File;
 import java.sql.SQLException;
 
 public final class LoginRecorder extends JavaPlugin {
@@ -11,11 +14,18 @@ public final class LoginRecorder extends JavaPlugin {
     @Override
     public void onEnable() {
         // Plugin startup logicz
-        saveResource("database.db", false);
+        saveDefaultConfig();
+        File dbFile = new File(this.getDataFolder().getPath() + "/database.db");
+        if (!dbFile.exists()) {
+            saveResource("database.db", false);
+        }
         sql = SQL.getInstance();
         sql.connectDatabase();
         Bukkit.getServer().getPluginManager().registerEvents(new Listeners(), this);
-        getCommand("checkentry").setExecutor(new CheckEntry());
+        PluginCommand checkEntry = getCommand("checkentry");
+        checkEntry.setExecutor(new CheckEntry());
+        checkEntry.setTabCompleter(new CheckEntryTabComplete());
+
     }
 
     @Override
